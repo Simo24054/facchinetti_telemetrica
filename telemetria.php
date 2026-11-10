@@ -14,16 +14,50 @@ $ping_validi = [];
 
 $pacchetti_persi = 0;
 
-foreach($ping_grezzi as $valori){
-    if ($valori == -1){
-        $pacchetti_persi++;
+    foreach($ping_grezzi as $valori){
+        if ($valori == -1){
+            $pacchetti_persi++;
+        }
+
+        else{
+            $ping_validi[] = $valori;
+        }
     }
 
-    else{
-        $ping_validi[] = $valori;
+$max = $ping_validi[0];
+$min = $ping_validi[0];
+$ping_critici = [];
+
+$somma = 0;
+$media = 0;
+$cont = 0;
+
+    foreach($ping_validi as $valori){
+        
+        $somma += $valori;
+        $cont++;
+
+
+        if($max < $valori){
+            $max = $valori;
+        }
+
+        if($min > $valori){
+            $max = $valori;
+        }
+
     }
 
-}
+    foreach($ping_validi as $valori){
+        if($valori>=150){
+            $ping_critici[] = $valori;
+        }
+    }
+
+$media = $somma/$cont;
+
+
+
 
 ?>
 
@@ -46,6 +80,24 @@ foreach($ping_grezzi as $valori){
 
         <?php endforeach ?>
     </ul>
+
+ 
+    <h2>La media è: <?php echo(round($media,2))?></h2>
+
+    <h2>Il massimo è: <?php echo($max)?></h2>
+
+    <h2>Il minimo è: <?php echo($min)?></h2>
+     
+    
+    <h3>Pacchetti critici maggiori di 150: </h3>
+    <ul>
+        <?php foreach($ping_critici as $valori): ?>
+            <li><?php echo($valori)?> </li>
+        <?php endforeach ?>
+    </ul>
+
+
+
     
     
 
