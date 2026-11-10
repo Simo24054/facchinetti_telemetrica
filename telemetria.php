@@ -57,6 +57,24 @@ $cont = 0;
 $media = $somma/$cont;
 
 
+$ping_unici = array_unique($ping_validi); 
+
+$ping_ordinati = $ping_validi;
+
+sort($ping_validi);
+
+$top_3_veloci = array_slice($ping_ordinati, 0, 3);
+
+
+    if (in_array(100, $ping_ordinati)) {
+        $controllo_100ms = "Sì";
+    } else {
+        $controllo_100ms = "No";
+    }
+
+
+
+
 
 
 ?>
@@ -96,9 +114,28 @@ $media = $somma/$cont;
         <?php endforeach ?>
     </ul>
 
+    <h3>Pacchetti unici </h3>
+    <ul>
+        <?php foreach($ping_unici as $valori): ?>
+            <li><?php echo($valori)?> </li>
+        <?php endforeach ?>
+    </ul>
 
+    <h3>Pacchetti ordinati</h3>
+    <ul>
+        <?php foreach($ping_ordinati as $valori): ?>
+            <li><?php echo($valori)?> </li>
+        <?php endforeach ?>
+    </ul>
 
-    
+    <h3>i tre pacchetti più veloci</h3>
+    <ul>
+        <?php foreach($top_3_veloci as $valori): ?>
+            <li><?php echo($valori)?> </li>
+        <?php endforeach ?>
+    </ul>
+
+     <h3>Pacchetti criti : <?php echo($controllo_100ms) ?></h3>
     
 
 </body>
