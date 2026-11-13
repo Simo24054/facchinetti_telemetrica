@@ -53,9 +53,9 @@ $media = $somma/$cont;
 
 $ping_unici = array_unique($ping_validi); 
 
-$ping_ordinati = $ping_validi;
+$ping_ordinati = $ping_unici;
 
-sort($ping_validi);
+sort($ping_ordinati);
 
 $top_3_veloci = array_slice($ping_ordinati, 0, 3);
 
@@ -65,11 +65,6 @@ $top_3_veloci = array_slice($ping_ordinati, 0, 3);
     } else {
         $controllo_100ms = "No";
     }
-
-
-
-
-
 
 ?>
 
@@ -91,6 +86,11 @@ $top_3_veloci = array_slice($ping_ordinati, 0, 3);
         <li>Media: <?= round($media,2); ?></li>
         <li>Minimo: <?= $ping_min; ?></li>
         <li>Massimo: <?= $ping_max; ?></li>
+        <li>Controllo 100ms: <?= $controllo_100ms; ?></li>
+        <li>Top 3 migliori tempi: <?php foreach($top_3_veloci as $top3): ?>
+            <?= $top3; ?>   
+        <?php endforeach ?>
+        </li>
 
     </ul>
 
@@ -115,58 +115,5 @@ $top_3_veloci = array_slice($ping_ordinati, 0, 3);
             <?php endfor; ?>
         </tbody>
     </table>
-
-
-
-
-
-   <!--<h1>numero pacchetti persi : <?php echo($pacchetti_persi) ?> </h1>
-    
-
-    <ul>
-        <?php foreach($ping_validi as $valori): ?>
-            <li><?php echo($valori)?> </li>
-        <?php endforeach ?>
-    </ul>
-
- 
-    <h2>La media è: <?php echo(round($media,2))?></h2>
-
-    <h2>Il massimo è: <?php echo($ping_max)?></h2>
-
-    <h2>Il minimo è: <?php echo($ping_min)?></h2>
-     
-    
-    <h3>Pacchetti critici maggiori di 150: </h3>
-    <ul>
-        <?php foreach($ping_critici as $valori): ?>
-            <li><?php echo($valori)?> </li>
-        <?php endforeach ?>
-    </ul>
-
-    <h3>Pacchetti unici </h3>
-    <ul>
-        <?php foreach($ping_unici as $valori): ?>
-            <li><?php echo($valori)?> </li>
-        <?php endforeach ?>
-    </ul>
-
-    <h3>Pacchetti ordinati</h3>
-    <ul>
-        <?php foreach($ping_ordinati as $valori): ?>
-            <li><?php echo($valori)?> </li>
-        <?php endforeach ?>
-    </ul>
-
-    <h3>i tre pacchetti più veloci</h3>
-    <ul>
-        <?php foreach($top_3_veloci as $valori): ?>
-            <li><?php echo($valori)?> </li>
-        <?php endforeach ?>
-    </ul>
-
-     <h3>Pacchetti criti : <?php echo($controllo_100ms) ?></h3> -->
-    
-
 </body>
 </html>
