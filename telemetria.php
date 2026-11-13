@@ -3,13 +3,7 @@
 $ping_grezzi = [45, 120, -1, 32, 210, 85, -1, 18, 95, 310, 45, 60, -1, 150, 28, 240,
 18, 72];
 
-
-$ping_grezzi [] = 55;
-
-$ping_grezzi [] = 190;
-
-$ping_grezzi [] = 12;
-
+array_push($ping_grezzi, 55, 190, 12);  
 $ping_validi = [];
 
 $pacchetti_persi = 0;
@@ -24,8 +18,8 @@ $pacchetti_persi = 0;
         }
     }
 
-$max = $ping_validi[0];
-$min = $ping_validi[0];
+$ping_max = $ping_validi[0];
+$ping_min = $ping_validi[0];
 $ping_critici = [];
 
 $somma = 0;
@@ -38,13 +32,13 @@ $cont = 0;
         $cont++;
 
 
-        if($max < $valori){
-            $max = $valori;
+        if($ping_max < $valori){
+            $ping_max = $valori;
         }
 
-        if($min > $valori){
-            $max = $valori;
-        }
+        if($ping_min > $valori){
+            $ping_min = $valori;
+        }   
 
     }
 
@@ -89,22 +83,36 @@ $top_3_veloci = array_slice($ping_ordinati, 0, 3);
 </head>
 <body>
 
-    <h1>numero pacchetti persi : <?php echo($pacchetti_persi) ?> </h1>
+    <ul>
+
+        <li>Totale rilevazioni: <?= (count($ping_grezzi)); ?> </li>
+        <li>Pacchetti Validi: <?= count($ping_validi); ?></li>
+        <li>Pacchetti versi: <?= $pacchetti_persi; ?></li>
+        <li>Media: <?= round($media,2); ?></li>
+        <li>Minimo: <?= $ping_min; ?></li>
+        <li>Massimo: <?= $ping_max; ?></li>
+
+    </ul>
+
+        
+
+
+
+   <!--<h1>numero pacchetti persi : <?php echo($pacchetti_persi) ?> </h1>
     
 
     <ul>
         <?php foreach($ping_validi as $valori): ?>
             <li><?php echo($valori)?> </li>
-
         <?php endforeach ?>
     </ul>
 
  
     <h2>La media è: <?php echo(round($media,2))?></h2>
 
-    <h2>Il massimo è: <?php echo($max)?></h2>
+    <h2>Il massimo è: <?php echo($ping_max)?></h2>
 
-    <h2>Il minimo è: <?php echo($min)?></h2>
+    <h2>Il minimo è: <?php echo($ping_min)?></h2>
      
     
     <h3>Pacchetti critici maggiori di 150: </h3>
@@ -135,7 +143,7 @@ $top_3_veloci = array_slice($ping_ordinati, 0, 3);
         <?php endforeach ?>
     </ul>
 
-     <h3>Pacchetti criti : <?php echo($controllo_100ms) ?></h3>
+     <h3>Pacchetti criti : <?php echo($controllo_100ms) ?></h3> -->
     
 
 </body>
