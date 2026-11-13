@@ -94,7 +94,29 @@ $top_3_veloci = array_slice($ping_ordinati, 0, 3);
 
     </ul>
 
-        
+    <table>
+        <thead>
+            <tr>
+                <th> # </th>
+                <th> Ping (ms) </th>
+                <th> Stato </th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+            <?php for( $i = 0; $i < count($ping_validi); $i++ ): ?>
+                <tr>
+                    <td> <?= $i+1; ?></td>
+                    <td> <?= $ping_validi[$i]; ?></td>
+                    <td> <?= $ping_validi[$i] >= 150 ? "CRITICO" : "NORMALE"; ?></td>
+                </tr>
+
+            <?php endfor; ?>
+        </tbody>
+    </table>
+
+
 
 
 
